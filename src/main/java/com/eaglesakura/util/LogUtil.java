@@ -110,8 +110,6 @@ public final class LogUtil {
 
     /**
      * ログ出力時に使用するタグを設定する。
-     *
-     * @param tag
      */
     public static void setTag(String tag) {
         LogUtil.tag = tag;
@@ -119,8 +117,6 @@ public final class LogUtil {
 
     /**
      * ロガーを設定する。
-     *
-     * @param logger
      */
     public static void setLogger(Logger logger) {
         LogUtil.logger = logger;
@@ -128,8 +124,6 @@ public final class LogUtil {
 
     /**
      * 実際に出力する場合はtrueを設定する
-     *
-     * @param output
      */
     public static void setOutput(boolean output) {
         LogUtil.output = output;
@@ -137,8 +131,6 @@ public final class LogUtil {
 
     /**
      * ログ出力を行う。
-     *
-     * @param message
      */
     public static void log(String message) {
         if (output) {
@@ -153,8 +145,6 @@ public final class LogUtil {
 
     /**
      * デバッグログ出力を行う
-     *
-     * @param message
      */
     public static void d(String message) {
         if (output) {
