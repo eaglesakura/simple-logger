@@ -1,0 +1,21 @@
+machine:
+  timezone:
+    Asia/Tokyo
+  java:
+    version: oraclejdk7
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    GRADLE_OPTS: -Xmx4G -Dorg.gradle.daemon=true
+    JAVA_OPTS: "-Xms1024m -Xmx4096m -XX:MaxPermSize=2048m"
+dependencies:
+  override:
+    - echo "Skip dependencies"
+test:
+  override:
+    - echo "Skip test task"
+deployment:
+  canary:
+    branch: 1.0.x
+    commands:
+      - export MAVEN_LOCAL_REPO=$CIRCLE_ARTIFACTS
+      - ./scripts/circle.sh
