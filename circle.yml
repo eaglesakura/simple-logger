@@ -18,4 +18,4 @@ deployment:
     branch: 1.0.x
     commands:
       - export MAVEN_LOCAL_REPO=$CIRCLE_ARTIFACTS
-      - ./scripts/circle.sh
+      - ./scripts/deploy.sh
