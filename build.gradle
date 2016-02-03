@@ -1,5 +1,9 @@
 def ARTIFACT_VERSION = "1.0.0"
 def ARTIFACT_NAME = file(".").absoluteFile.name
+def ARTIFACT_INSTALL_TARGET = new File("${System.env.MAVEN_LOCAL_REPO}")
+if (System.env.CIRCLE_ARTIFACTS != null) {
+    ARTIFACT_INSTALL_TARGET = file(System.env.CIRCLE_ARTIFACTS);
+}
 
 buildscript {
     repositories {
@@ -35,7 +39,7 @@ artifacts {
 uploadArchives {
     repositories {
         mavenDeployer {
-            repository(url: uri(new File("${System.env.MAVEN_LOCAL_REPO}")))
+            repository(url: uri(ARTIFACT_INSTALL_TARGET))
             pom.version = ARTIFACT_VERSION
             pom.groupId = "com.eaglesakura"
             pom.artifactId = ARTIFACT_NAME
@@ -58,7 +62,7 @@ uploadArchives {
 
 task uploadJavadoc << {
     def src = file("build/docs/javadoc/");
-    def dst = new File("${System.env.MAVEN_LOCAL_REPO}/doc/${ARTIFACT_NAME}/");
+    def dst = new File("${ARTIFACT_INSTALL_TARGET.absolutePath}/doc/${ARTIFACT_NAME}/");
     dst.deleteDir();
     dst.mkdirs();
 
