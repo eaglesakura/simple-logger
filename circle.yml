@@ -22,4 +22,5 @@ deployment:
     branch: 1.0.x
     commands:
       - export MAVEN_LOCAL_REPO=$CIRCLE_ARTIFACTS
+      - rm -rf "~/.gradle/"
       - ./script/deploy.sh
