@@ -1,2 +1,2 @@
 #! /bin/sh
-./gradlew clean build generateJavadoc uploadArchives uploadJavadoc
+./gradlew clean build javadoc uploadArchives uploadJavadoc

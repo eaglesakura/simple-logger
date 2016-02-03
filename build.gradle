@@ -27,11 +27,15 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
-task generateJavadoc(type: Javadoc) {
-    options.charSet "UTF-8"
+javadoc {
+    options.encoding = "UTF-8"
+    project.configure(options) {
+        memberLevel = org.gradle.external.javadoc.JavadocMemberLevel.PROTECTED
+        charSet = "UTF-8"
+    }
 }
 
-task javadocJar(type: Jar, dependsOn: generateJavadoc) {
+task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
 }
 
