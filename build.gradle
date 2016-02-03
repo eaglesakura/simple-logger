@@ -27,9 +27,12 @@ task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
+task generateJavadoc(type: Javadoc) {
+    options.charSet "UTF-8"
+}
+
+task javadocJar(type: Jar, dependsOn: generateJavadoc) {
     classifier = 'javadoc'
-    options.charSet("UTF-8")
 }
 
 artifacts {
