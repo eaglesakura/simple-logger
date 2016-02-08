@@ -23,10 +23,6 @@ test:
   override:
     - echo "Skip test task"
 deployment:
-  canary:
-    branch: 1.0.x
-    commands:
-      - ./script/deploy.sh
   deploy:
     branch: /^v[0-9]\..*$/
     commands:
