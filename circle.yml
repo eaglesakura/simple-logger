@@ -28,7 +28,7 @@ deployment:
     commands:
       - ./script/deploy.sh
   deploy:
-    branch: v\d.\d.\d
+    branch: /^v[0-9]\..*$/
     commands:
       - git clone git@github.com:eaglesakura/maven.git
       - ./script/deploy.sh
