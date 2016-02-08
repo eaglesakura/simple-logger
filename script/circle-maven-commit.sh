@@ -13,5 +13,5 @@ fi
 
 cd maven
 git add .
-git commit -am "[Circle-CI] add $CIRCLE_PROJECT_REPONAME $CIRCLE_BRANCH"
+git commit -am "[Circle-CI] add $CIRCLE_PROJECT_REPONAME $CIRCLE_BRANCH.${CIRCLE_BUILD_NUM}"
 git push origin gh-pages

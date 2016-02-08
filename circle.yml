@@ -28,7 +28,7 @@ deployment:
     commands:
       - ./script/deploy.sh
   deploy:
-    branch: v1.0.0
+    branch: v\d.\d.\d
     commands:
       - git clone git@github.com:eaglesakura/maven.git
       - ./script/deploy.sh
