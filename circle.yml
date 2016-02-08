@@ -2,6 +2,7 @@ checkout:
   post:
     - chmod 755 ./gradlew
     - chmod 755 ./script/deploy.sh
+    - chmod 755 ./script/circle-maven-commit.sh
     - rm -rf "~/.gradle/"
     - rm -rf "home/ubuntu/.m2"
     - rm -rf "home/ubuntu/.ivy2"
@@ -26,3 +27,9 @@ deployment:
     branch: 1.0.x
     commands:
       - ./script/deploy.sh
+  deploy:
+    branch: v1.0.0
+    commands:
+      - git clone git@github.com:eaglesakura/maven.git
+      - ./script/deploy.sh
+      - ./script/circle-maven-commit.sh

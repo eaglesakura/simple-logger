@@ -78,7 +78,9 @@ task uploadJavadoc << {
  * Mavenの格納先を確定する
  */
 File getArtifactInstallTarget() {
-    if (System.env.CIRCLE_ARTIFACTS != null) {
+    if (file("maven").directory) {
+        return file("maven");
+    } else if (System.env.CIRCLE_ARTIFACTS != null) {
         return file(System.env.CIRCLE_ARTIFACTS);
     } else if (System.env.MAVEN_LOCAL_REPO != null) {
         return file(System.env.MAVEN_LOCAL_REPO);
