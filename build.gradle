@@ -45,7 +45,7 @@ uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: uri(ARTIFACT_INSTALL_TARGET))
-            pom.version = ARTIFACT_VERSION
+            pom.version = getArtifactVersion()
             pom.groupId = "com.eaglesakura"
             pom.artifactId = ARTIFACT_NAME
         }
@@ -72,6 +72,19 @@ task uploadJavadoc << {
     dst.mkdirs();
 
     ["/usr/bin/rsync", "-a", src.absolutePath, dst.absolutePath].execute().text;
+}
+
+/**
+ * バージョンを取得する
+ * CircleCIの場合、バージョン末尾にビルド番号を付与する
+ */
+def getArtifactVersion() {
+    if (System.env.CIRCLE_BUILD_NUM != null) {
+        // CircleCIのバージョンが指定されているので、そちらを利用する
+        return "${ARTIFACT_VERSION}.${System.env.CIRCLE_BUILD_NUM}"
+    } else {
+        return "${ARTIFACT_VERSION}.0"
+    }
 }
 
 /**
