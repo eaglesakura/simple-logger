@@ -29,3 +29,7 @@ deployment:
       - git clone git@github.com:eaglesakura/maven.git
       - ./script/deploy.sh
       - ./script/circle-maven-commit.sh
+  daily:
+    branch: /^v[0-9]\..*$/
+    commands:
+      - ./script/deploy.sh
