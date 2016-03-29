@@ -108,7 +108,7 @@ public final class LogUtil {
         @Override
         public void out(int level, String tag, String msg) {
             StackTraceElement[] trace = new Exception().getStackTrace();
-            StackTraceElement elem = trace[Math.min(trace.length - 1, 3)];
+            StackTraceElement elem = trace[Math.min(trace.length - 1, 2)];
             if (level == LOGGER_LEVEL_ERROR) {
                 System.err.println(String.format("%s[%d] | %s | %s", elem.getFileName(), elem.getLineNumber(), tag, msg));
             } else {
@@ -132,6 +132,9 @@ public final class LogUtil {
      * ロガーを設定する。
      */
     public static void setLogger(Logger logger) {
+        if (logger == null) {
+            throw new IllegalArgumentException();
+        }
         LogUtil.sLogger = logger;
     }
 
@@ -181,12 +184,22 @@ public final class LogUtil {
     }
 
     @Deprecated
-    public static void log(String fmt, Object... formats) {
-        out(".lib", fmt, formats);
+    public static void log(String fmt, Object... args) {
+        String tag = ".lib";
+        LogOpt opt = getOption(tag);
+        if (!opt.enable) {
+            return;
+        }
+
+        opt.logger.out(opt.level, tag, String.format(fmt, args));
     }
 
     @Deprecated
     public static void log(Exception e) {
-        out(".lib", e);
+        LogOpt opt = getOption(".lib");
+        if (!opt.enable) {
+            return;
+        }
+        e.printStackTrace();
     }
 }
