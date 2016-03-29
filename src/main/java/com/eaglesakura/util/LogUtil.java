@@ -184,12 +184,22 @@ public final class LogUtil {
     }
 
     @Deprecated
-    public static void log(String fmt, Object... formats) {
-        out(".lib", fmt, formats);
+    public static void log(String fmt, Object... args) {
+        String tag = ".lib";
+        LogOpt opt = getOption(tag);
+        if (!opt.enable) {
+            return;
+        }
+
+        opt.logger.out(opt.level, tag, String.format(fmt, args));
     }
 
     @Deprecated
     public static void log(Exception e) {
-        out(".lib", e);
+        LogOpt opt = getOption(".lib");
+        if (!opt.enable) {
+            return;
+        }
+        e.printStackTrace();
     }
 }
