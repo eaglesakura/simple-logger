@@ -69,7 +69,7 @@ public final class LogUtil {
         }
 
         protected int getStackDepth() {
-            return 3;
+            return 2;
         }
 
         @Override
