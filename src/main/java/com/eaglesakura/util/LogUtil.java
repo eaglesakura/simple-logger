@@ -119,6 +119,41 @@ public final class LogUtil {
         }
     }
 
+    public static class RobolectricLogger implements LogUtil.Logger {
+
+        protected int getStackDepth() {
+            return 2;
+        }
+
+        @Override
+        public void out(int level, String tag, String msg) {
+
+            switch (level) {
+                case LogUtil.LOGGER_LEVEL_INFO:
+                    tag = "I/" + tag;
+                    break;
+                case LogUtil.LOGGER_LEVEL_ERROR:
+                    tag = "E/" + tag;
+                    break;
+                default:
+                    tag = "D/" + tag;
+                    break;
+            }
+
+            try {
+                StackTraceElement[] trace = new Exception().getStackTrace();
+                StackTraceElement elem = trace[Math.min(trace.length - 1, getStackDepth())];
+                if (level == LogUtil.LOGGER_LEVEL_ERROR) {
+                    System.err.println(String.format("%s | %s[%d] : %s", tag, elem.getFileName(), elem.getLineNumber(), msg));
+                } else {
+                    System.out.println(String.format("%s | %s[%d] : %s", tag, elem.getFileName(), elem.getLineNumber(), msg));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private static synchronized LogOpt getOption(String tag) {
         LogOpt opt = sOptions.get(tag);
         if (opt == null) {
