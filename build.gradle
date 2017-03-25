@@ -28,6 +28,7 @@ apply plugin: 'java'
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 group = "com.eaglesakura"
+version = ARTIFACT_VERSION + getArtifactVersionSuffix()
 
 dependencies {
     testCompile 'junit:junit:4.12'
@@ -90,7 +91,7 @@ bintray {
         labels = BINTRAY_LABELS
         vcsUrl = 'https://github.com/eaglesakura/'
         version {
-            name = ARTIFACT_VERSION + getArtifactVersionSuffix()
+            name = project.version
             released = new Date()
             gpg {
                 sign = true
