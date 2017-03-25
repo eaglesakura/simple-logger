@@ -84,8 +84,8 @@ bintray {
     user = 'eaglesakura'
     key = BINTRAY_API_KEY
     pkg {
-        repo = 'maven'
-        name = REPOSITORY_NAME
+        repo = REPOSITORY_NAME
+        name = new File(".").name
         licenses = BINTRAY_LICENSES
         labels = BINTRAY_LABELS
         vcsUrl = 'https://github.com/eaglesakura/'
