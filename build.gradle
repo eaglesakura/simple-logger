@@ -85,7 +85,7 @@ bintray {
     key = BINTRAY_API_KEY
     pkg {
         repo = REPOSITORY_NAME
-        name = new File(".").name
+        name = new File("./").name
         licenses = BINTRAY_LICENSES
         labels = BINTRAY_LABELS
         vcsUrl = 'https://github.com/eaglesakura/'
