@@ -90,7 +90,8 @@ bintray {
         name = file(".").absoluteFile.name
         licenses = BINTRAY_LICENSES
         labels = BINTRAY_LABELS
-        vcsUrl = 'https://github.com/eaglesakura/'
+        issueTrackerUrl = "https://github.com/eaglesakura/${file(".").absoluteFile.name}/issues"
+        vcsUrl = "https://github.com/eaglesakura/${file(".").absoluteFile.name}"
         version {
             name = project.version
             released = new Date()
