@@ -2,8 +2,9 @@
  * 1.0.0   : release
  * 1.1.x   : 自動デプロイに移行
  * 1.2.x   : ログの種類ごとにオプションを切れるように修正
+ * 1.3.x   : リリースをbintrayに移行
  */
-def ARTIFACT_VERSION = "1.2"
+def ARTIFACT_VERSION = "1.3"
 def REPOSITORY_NAME = "maven"
 def BINTRAY_LICENSES = ["MIT"]
 def BINTRAY_LABELS = ["android"]
