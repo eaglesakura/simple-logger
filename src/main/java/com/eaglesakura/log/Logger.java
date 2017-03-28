@@ -153,4 +153,10 @@ public class Logger {
         e.printStackTrace();
     }
 
+    /**
+     * ロガーを更新する
+     */
+    public static void setLogger(Impl logger) {
+        sLogger = logger;
+    }
 }

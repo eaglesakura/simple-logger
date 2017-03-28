@@ -14,14 +14,6 @@ public class LogUtil extends Logger {
     public static final int LOGGER_LEVEL_DEBUG = 2;
     public static final int LOGGER_LEVEL_ERROR = 3;
 
-    /**
-     * ロガーを設定する。
-     */
-    @Deprecated
-    public static void setLogger(Impl logger) {
-        // not work!
-    }
-
     @Deprecated
     public static void out(String tag, String fmt, Object... args) {
         out(LEVEL_DEBUG, tag, fmt, args);
